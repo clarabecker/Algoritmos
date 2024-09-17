@@ -1,6 +1,5 @@
 package laboratórios;
-import queue.ArrayQueue;
-import utils.Point;
+import java.util.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -8,18 +7,34 @@ import java.util.Scanner;
 public class ListaNomes {
 
     public void ordenarLista(String[] nomes) {
-        ArrayQueue<String> queue = new ArrayQueue<>();
-        HashMap<Integer, String> ListaNomes = new HashMap<Integer, String>();
+        List<String>[] gruposPorTamanho = new ArrayList[11];
 
-        for(String nome : nomes) {
-            int tamanho = nome.length();
-            if (!ListaNomes.containsKey(tamanho)) {
-                ListaNomes.put(tamanho, nome);
-            } else {
-                queue.enqueue(nome);
-            }
+        for (int i = 2; i <= 10; i++) {
+            gruposPorTamanho[i] = new ArrayList<>();
         }
 
+        for (String nome : nomes) {
+            int tamanho = nome.length();
+            gruposPorTamanho[tamanho].add(nome);
+        }
+
+        boolean haNomesRestantes = true;
+
+        while (haNomesRestantes) {
+            haNomesRestantes = false;
+            List<String> linhaAtual = new ArrayList<>();
+
+            for (int tamanho = 2; tamanho <= 10; tamanho++) {
+                if (!gruposPorTamanho[tamanho].isEmpty()) {
+                    linhaAtual.add(gruposPorTamanho[tamanho].remove(0));
+                    haNomesRestantes = true;
+                }
+            }
+
+            if (!linhaAtual.isEmpty()) {
+                System.out.println(String.join(", ", linhaAtual));
+            }
+        }
     }
 
     public static void main(String[] args) {
