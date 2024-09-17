@@ -1,7 +1,10 @@
 package laboratórios;
 import java.util.*;
 
-import java.util.HashMap;
+import queue.ArrayQueue;
+import queue.LinkedQueue;
+import utils.Point;
+
 import java.util.Scanner;
 
 public class ListaNomes {
@@ -22,17 +25,17 @@ public class ListaNomes {
 
         while (haNomesRestantes) {
             haNomesRestantes = false;
-            List<String> linhaAtual = new ArrayList<>();
+            ArrayQueue<String> linhaAtual = new ArrayQueue<>();
 
             for (int tamanho = 2; tamanho <= 10; tamanho++) {
                 if (!gruposPorTamanho[tamanho].isEmpty()) {
-                    linhaAtual.add(gruposPorTamanho[tamanho].remove(0));
+                    linhaAtual.enqueue(gruposPorTamanho[tamanho].remove(0));
                     haNomesRestantes = true;
                 }
             }
 
             if (!linhaAtual.isEmpty()) {
-                System.out.println(String.join(", ", linhaAtual));
+                System.out.println(linhaAtual);
             }
         }
     }
