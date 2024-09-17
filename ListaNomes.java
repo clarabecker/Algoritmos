@@ -1,10 +1,6 @@
 package laboratórios;
 import java.util.*;
-
 import queue.ArrayQueue;
-import queue.LinkedQueue;
-import utils.Point;
-
 import java.util.Scanner;
 
 public class ListaNomes {
